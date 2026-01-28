@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelly - Modern Arch Linux Package Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .hero-gradient { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); }
+        .nav-link { @apply text-gray-300 hover:text-white transition-colors; }
+        
+        /* Documentation Styles */
+        .prose h1 { @apply text-3xl font-bold mb-6 mt-10; }
+        .prose h2 { @apply text-2xl font-semibold mb-4 mt-8; }
+        .prose h3 { @apply text-xl font-medium mb-3 mt-6; }
+        .prose p { @apply text-gray-400 mb-4 leading-relaxed; }
+        .prose code { @apply bg-black/50 px-1 rounded text-blue-400; }
+        .prose pre { @apply bg-black p-4 rounded-lg mb-6 overflow-x-auto border border-white/10; }
+        .prose pre code { @apply bg-transparent p-0 text-sm text-gray-300; }
+        .prose img { @apply rounded-xl border border-white/10 my-8; }
+        .prose ul { @apply list-disc list-inside mb-4 text-gray-400; }
+    </style>
+</head>
+<body class="bg-[#121212] text-white">
+    <nav class="sticky top-0 z-50 bg-[#121212]/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl font-bold tracking-tight">SHELLY</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="downloads.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Downloads</a>
+                        <a href="screenshots.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Screenshots</a>
+                        <a href="#docs" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Documentation</a>
+                        <a href="about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/ZoeyErinBauer/Shelly-ALPM" target="_blank" class="text-gray-300 hover:text-white">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://www.buymeacoffee.com/" target="_blank" class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-full text-xs font-bold transition-colors">
+                        Buy me a coffee
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-gradient py-24 px-4">
+            <div class="max-w-5xl mx-auto text-center">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
+                    Arch Package Management, <span class="text-blue-500">Reimagined.</span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+                    Shelly is a modern, visual, and intuitive interface for your Arch Linux system. 
+                    Not just a wrapper, but a native ground-up experience.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="downloads.html" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="download" class="w-5 h-5"></i> Get Shelly
+                    </a>
+                    <a href="https://github.com/ZoeyErinBauer/Shelly-ALPM" target="_blank" class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="github" class="w-5 h-5"></i> GitHub Repo
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Install -->
+        <section class="py-20 px-4 bg-[#1a1a1a]">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-black/50 rounded-2xl p-8 border border-white/5">
+                    <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                        <i data-lucide="terminal" class="text-blue-500"></i> Quick Install
+                    </h2>
+                    <p class="text-gray-400 mb-6">Run this command in your terminal to install the latest version of Shelly:</p>
+                    <div class="bg-black rounded-lg p-4 font-mono text-sm text-green-400 border border-white/10 flex justify-between items-center group">
+                        <code class="break-all">curl -fsSL https://raw.githubusercontent.com/ZoeyErinBauer/Shelly-ALPM/master/web-install.sh | sudo bash</code>
+                        <button class="text-gray-500 hover:text-white p-2 transition-colors opacity-0 group-hover:opacity-100">
+                            <i data-lucide="copy" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="py-24 px-4">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-16">Why Shelly?</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-8 rounded-2xl bg-white/5 border border-white/5 hover:border-blue-500/50 transition-colors">
+                        <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-6">
+                            <i data-lucide="zap" class="text-blue-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Native Performance</h3>
+                        <p class="text-gray-400">Directly interacts with libalpm for the fastest and most accurate package management possible.</p>
+                    </div>
+                    <div class="p-8 rounded-2xl bg-white/5 border border-white/5 hover:border-purple-500/50 transition-colors">
+                        <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-6">
+                            <i data-lucide="layout" class="text-purple-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Modern UI</h3>
+                        <p class="text-gray-400">Built with Avalonia UI, providing a beautiful, responsive, and cross-platform ready interface.</p>
+                    </div>
+                    <div class="p-8 rounded-2xl bg-white/5 border border-white/5 hover:border-green-500/50 transition-colors">
+                        <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-6">
+                            <i data-lucide="package" class="text-green-500"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">AUR & Flatpak</h3>
+                        <p class="text-gray-400">Integrated support for Arch User Repository and Flatpaks, managing all your software in one place.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documentation -->
+        <section id="docs" class="py-24 px-4 bg-[#1a1a1a]">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-16">Documentation</h2>
+                <div id="content" class="prose max-w-none">
+                    <p class="text-center text-gray-500">Loading documentation...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm mb-4">Shelly is an open-source project licensed under GPL-2.0.</p>
+            <div class="flex justify-center gap-6">
+                <a href="https://github.com/ZoeyErinBauer/Shelly-ALPM" class="text-gray-400 hover:text-white transition-colors">GitHub</a>
+                <a href="https://www.buymeacoffee.com/" class="text-gray-400 hover:text-white transition-colors">Donate</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        fetch('docs/documentation.md')
+            .then(response => response.text())
+            .then(text => {
+                // Adjust image paths from markdown to screenshots/
+                const adjustedText = text.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, path) => {
+                    if (!path.startsWith('http')) {
+                        return `![${alt}](screenshots/${path})`;
+                    }
+                    return match;
+                });
+                document.getElementById('content').innerHTML = marked.parse(adjustedText);
+            })
+            .catch(err => {
+                document.getElementById('content').innerHTML = '<p class="text-red-500">Error loading documentation.</p>';
+                console.error(err);
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Shelly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#121212] text-white">
+    <nav class="sticky top-0 z-50 bg-[#121212]/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl font-bold tracking-tight">SHELLY</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="downloads.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Downloads</a>
+                        <a href="screenshots.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Screenshots</a>
+                        <a href="docs/index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Documentation</a>
+                        <a href="about.html" class="text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/ZoeyErinBauer/Shelly-ALPM" target="_blank" class="text-gray-300 hover:text-white">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-20 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-4xl font-bold mb-8 text-center">About Shelly</h1>
+            
+            <div class="space-y-8 text-gray-300 leading-relaxed">
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4">The Vision</h2>
+                    <p>
+                        Shelly was born from a desire to make Arch Linux more accessible without sacrificing its core principles. 
+                        While Arch is known for its simplicity and power, its package management has traditionally been text-heavy and daunting for new users.
+                    </p>
+                    <p class="mt-4">
+                        We reimagined the package manager not as a mere wrapper around existing tools, but as a native, high-performance application 
+                        that provides a modern visual experience while maintaining direct, fast communication with <code>libalpm</code>.
+                    </p>
+                </section>
+
+                <section class="bg-white/5 p-8 rounded-2xl border border-white/10">
+                    <h2 class="text-2xl font-bold text-white mb-4">Core Philosophy</h2>
+                    <ul class="space-y-4">
+                        <li class="flex gap-3">
+                            <i data-lucide="check-circle" class="text-green-500 flex-shrink-0"></i>
+                            <span><strong>Intuitive Design:</strong> Every action should be clear and accessible, reducing the cognitive load on the user.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i data-lucide="check-circle" class="text-green-500 flex-shrink-0"></i>
+                            <span><strong>Native Performance:</strong> No compromises on speed. By interacting directly with system libraries, Shelly remains as fast as the CLI tools you know.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <i data-lucide="check-circle" class="text-green-500 flex-shrink-0"></i>
+                            <span><strong>Open Source:</strong> Licensed under GPL-2.0, Shelly is and always will be free and open for the community to improve.</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="text-2xl font-bold text-white mb-4">The Team</h2>
+                    <p>
+                        Shelly is developed with passion by Zoey Erin Bauer and the Arch Linux community. 
+                        We believe in the power of open-source and the strength of the Arch ecosystem.
+                    </p>
+                </section>
+
+                <div class="pt-8 text-center">
+                    <a href="https://github.com/ZoeyErinBauer/Shelly-ALPM" target="_blank" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-bold transition-all">
+                        <i data-lucide="github" class="w-5 h-5"></i> Join us on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-black py-12 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>Shelly is an open-source project licensed under GPL-2.0.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

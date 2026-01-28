@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads - Shelly</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#121212] text-white">
+    <nav class="sticky top-0 z-50 bg-[#121212]/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl font-bold tracking-tight">SHELLY</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="downloads.html" class="text-white px-3 py-2 rounded-md text-sm font-medium">Downloads</a>
+                        <a href="screenshots.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Screenshots</a>
+                        <a href="docs/index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Documentation</a>
+                        <a href="about.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/ZoeyErinBauer/Shelly-ALPM" target="_blank" class="text-gray-300 hover:text-white">
+                        <i data-lucide="github" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl font-bold mb-12">Downloads</h1>
+
+            <!-- Web Install -->
+            <div class="mb-12 bg-white/5 rounded-2xl p-8 border border-white/10">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <i data-lucide="globe" class="text-blue-500"></i> Web Installer (Recommended)
+                </h2>
+                <p class="text-gray-400 mb-6">The easiest way to install Shelly on any Arch-based system.</p>
+                <div class="bg-black rounded-lg p-4 font-mono text-sm text-green-400 border border-white/10 mb-4">
+                    <code>curl -fsSL https://raw.githubusercontent.com/ZoeyErinBauer/Shelly-ALPM/master/web-install.sh | sudo bash</code>
+                </div>
+                <p class="text-sm text-gray-500 italic">This script downloads the latest release and sets up both the UI and CLI tools.</p>
+            </div>
+
+            <!-- PKGBUILD -->
+            <div class="mb-12 bg-white/5 rounded-2xl p-8 border border-white/10">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <i data-lucide="box" class="text-purple-500"></i> Build from Source (PKGBUILD)
+                </h2>
+                <p class="text-gray-400 mb-6">Standard Arch Linux way to build and install.</p>
+                <div class="bg-black rounded-lg p-4 font-mono text-sm text-gray-300 border border-white/10">
+                    <div class="mb-2"><span class="text-blue-400">git clone</span> https://github.com/ZoeyErinBauer/Shelly-ALPM.git</div>
+                    <div class="mb-2"><span class="text-blue-400">cd</span> Shelly-ALPM</div>
+                    <div><span class="text-blue-400">makepkg</span> -si</div>
+                </div>
+            </div>
+
+            <!-- GitHub Releases -->
+            <div class="bg-white/5 rounded-2xl p-8 border border-white/10">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <i data-lucide="github" class="text-white"></i> GitHub Releases
+                </h2>
+                <p class="text-gray-400 mb-6">Download specific versions or the source code directly from GitHub.</p>
+                <a href="https://github.com/ZoeyErinBauer/Shelly-ALPM/releases" target="_blank" class="inline-flex items-center gap-2 text-blue-500 hover:text-blue-400 font-medium">
+                    View all releases <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-black py-12 border-t border-white/10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>Shelly is an open-source project licensed under GPL-2.0.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
