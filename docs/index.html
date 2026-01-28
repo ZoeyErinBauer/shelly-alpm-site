@@ -70,9 +70,22 @@
     </header>
 
     <main class="py-12 px-4">
-        <div class="max-w-4xl mx-auto">
-            <div id="content" class="prose max-w-none">
-                <p class="text-center text-gray-500">Loading documentation...</p>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-8">
+            <!-- Sidebar -->
+            <aside class="w-full md:w-64 flex-shrink-0">
+                <nav id="wiki-nav" class="space-y-1">
+                    <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4 px-3">Wiki Pages</h2>
+                    <div id="wiki-list" class="space-y-1">
+                        <p class="px-3 text-gray-500 text-sm">Loading pages...</p>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Content -->
+            <div class="flex-grow">
+                <div id="content" class="prose max-w-none">
+                    <p class="text-center text-gray-500">Select a page from the sidebar.</p>
+                </div>
             </div>
         </div>
     </main>
@@ -89,30 +102,88 @@
 
     <script>
         lucide.createIcons();
-        
-        fetch('documentation.md')
-            .then(response => response.text())
-            .then(text => {
-                // Adjust image paths from markdown to public/screenshots/
+
+        const repo = 'ZoeyErinBauer/Shelly-ALPM';
+        const branch = 'master';
+        const wikiPath = 'wiki';
+        const contentDiv = document.getElementById('content');
+        const wikiListDiv = document.getElementById('wiki-list');
+
+        async function loadWikiPage(fileName) {
+            contentDiv.innerHTML = '<p class="text-center text-gray-500">Loading page...</p>';
+            try {
+                const response = await fetch(`https://raw.githubusercontent.com/${repo}/${branch}/${wikiPath}/${fileName}`);
+                if (!response.ok) throw new Error('Failed to fetch page');
+                const text = await response.text();
+
+                // Adjust image paths if they are relative
+                // Wiki images in master/wiki/ often refer to files in the same dir or a subfolder
                 const adjustedText = text.replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, path) => {
                     if (!path.startsWith('http')) {
-                        return `![${alt}](../screenshots/${path})`;
+                        return `![${alt}](https://raw.githubusercontent.com/${repo}/${branch}/${wikiPath}/${path})`;
                     }
                     return match;
                 });
 
-                // Set options for marked to handle breaks better
                 marked.setOptions({
                     breaks: true,
                     gfm: true
                 });
 
-                document.getElementById('content').innerHTML = marked.parse(adjustedText);
-            })
-            .catch(err => {
-                document.getElementById('content').innerHTML = '<p class="text-red-500">Error loading documentation.</p>';
+                contentDiv.innerHTML = marked.parse(adjustedText);
+                
+                // Update active state in sidebar
+                document.querySelectorAll('.wiki-link').forEach(link => {
+                    link.classList.remove('bg-white/10', 'text-white');
+                    link.classList.add('text-gray-400');
+                    if (link.dataset.file === fileName) {
+                        link.classList.add('bg-white/10', 'text-white');
+                        link.classList.remove('text-gray-400');
+                    }
+                });
+            } catch (err) {
+                contentDiv.innerHTML = '<p class="text-red-500">Error loading page.</p>';
                 console.error(err);
-            });
+            }
+        }
+
+        async function fetchWikiList() {
+            try {
+                const response = await fetch(`https://api.github.com/repos/${repo}/contents/${wikiPath}?ref=${branch}`);
+                if (!response.ok) throw new Error('Failed to fetch wiki list');
+                const files = await response.ok ? await response.json() : [];
+                
+                const mdFiles = files.filter(file => file.name.endsWith('.md'));
+                
+                if (mdFiles.length === 0) {
+                    wikiListDiv.innerHTML = '<p class="px-3 text-gray-500 text-sm">No wiki pages found.</p>';
+                    return;
+                }
+
+                wikiListDiv.innerHTML = '';
+                mdFiles.forEach(file => {
+                    const name = file.name.replace('.md', '').replace(/-/g, ' ');
+                    const button = document.createElement('button');
+                    button.className = 'wiki-link w-full text-left px-3 py-2 rounded-md text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors capitalize';
+                    button.textContent = name;
+                    button.dataset.file = file.name;
+                    button.onclick = () => loadWikiPage(file.name);
+                    wikiListDiv.appendChild(button);
+                });
+
+                // Load Home.md by default if it exists, otherwise the first one
+                const homePage = mdFiles.find(f => f.name.toLowerCase() === 'home.md') || mdFiles[0];
+                if (homePage) {
+                    loadWikiPage(homePage.name);
+                }
+
+            } catch (err) {
+                wikiListDiv.innerHTML = '<p class="px-3 text-red-500 text-sm">Error loading wiki list.</p>';
+                console.error(err);
+            }
+        }
+
+        fetchWikiList();
     </script>
 </body>
 </html>
