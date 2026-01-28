@@ -9,26 +9,35 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
         .hero-gradient { background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); }
         
         /* Documentation Styles */
-        .prose h1 { @apply text-4xl font-bold mb-8 mt-12 pb-2 border-b border-white/10; }
-        .prose h2 { @apply text-2xl font-semibold mb-4 mt-10 pb-1 border-b border-white/5; }
-        .prose h3 { @apply text-xl font-medium mb-3 mt-8; }
-        .prose p { @apply text-gray-400 mb-6 leading-relaxed; }
+        .prose { @apply text-gray-400 leading-relaxed; }
+        .prose h1 { @apply text-4xl font-bold mb-8 mt-12 pb-2 border-b border-white/10 text-white; }
+        .prose h2 { @apply text-2xl font-semibold mb-6 mt-12 pb-1 border-b border-white/5 text-white; }
+        .prose h3 { @apply text-xl font-medium mb-4 mt-10 text-white; }
+        .prose h4 { @apply text-lg font-medium mb-4 mt-8 text-white; }
+        .prose p { @apply mb-6; }
         .prose code { @apply bg-white/10 px-1.5 py-0.5 rounded text-blue-300 font-mono text-sm; }
-        .prose pre { @apply bg-[#0d1117] p-4 rounded-lg mb-6 overflow-x-auto border border-white/10; }
-        .prose pre code { @apply bg-transparent p-0 text-sm text-gray-300 border-none; }
-        .prose img { @apply rounded-xl border border-white/10 my-8 shadow-2xl mx-auto; }
-        .prose ul { @apply list-disc pl-6 mb-6 text-gray-400 space-y-2; }
-        .prose ol { @apply list-decimal pl-6 mb-6 text-gray-400 space-y-2; }
-        .prose li > ul, .prose li > ol { @apply mt-2 mb-0; }
-        .prose blockquote { @apply border-l-4 border-gray-700 pl-4 italic my-6 text-gray-500; }
-        .prose hr { @apply border-white/10 my-10; }
+        .prose pre { @apply bg-[#0d1117] p-4 rounded-lg mb-8 overflow-x-auto border border-white/10; }
+        .prose pre code { @apply bg-transparent p-0 text-sm text-gray-300 border-none !important; }
+        .prose img { @apply rounded-xl border border-white/10 my-10 shadow-2xl mx-auto block; }
+        .prose ul { @apply list-disc mb-8 space-y-3; }
+        .prose ol { @apply list-decimal mb-8 space-y-3; }
+        .prose li > ul, .prose li > ol { @apply mt-3 mb-0; }
+        .prose blockquote { @apply border-l-4 border-gray-700 pl-6 italic my-8 text-gray-500; }
+        .prose hr { @apply border-white/10 my-12; }
         .prose a { @apply text-blue-400 hover:underline; }
+        .prose table { @apply w-full mb-8 border-collapse; }
+        .prose th { @apply text-left border-b border-white/10 pb-2 font-semibold text-white; }
+        .prose td { @apply py-2 border-b border-white/5; }
+        /* Fix for list-item marker spacing */
+        .prose ul, .prose ol { @apply list-outside pl-6; }
     </style>
 </head>
 <body class="bg-[#121212] text-white">
@@ -127,7 +136,11 @@
 
                 marked.setOptions({
                     breaks: true,
-                    gfm: true
+                    gfm: true,
+                    highlight: function(code, lang) {
+                        const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+                        return hljs.highlight(code, { language }).value;
+                    }
                 });
 
                 contentDiv.innerHTML = marked.parse(adjustedText);
