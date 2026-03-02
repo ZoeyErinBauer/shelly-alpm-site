@@ -93,9 +93,10 @@
                     </h2>
                     <p class="text-gray-400 mb-6">Run this command in your terminal to install the latest version of Shelly:</p>
                     <div class="bg-black rounded-lg p-4 font-mono text-sm text-green-400 border border-white/10 flex justify-between items-center group">
-                        <code class="break-all">curl -fsSL https://raw.githubusercontent.com/ZoeyErinBauer/Shelly-ALPM/main/web-install.sh | sudo bash</code>
-                        <button class="text-gray-500 hover:text-white p-2 transition-colors opacity-0 group-hover:opacity-100">
-                            <i data-lucide="copy" class="w-4 h-4"></i>
+                        <code id="installCommand" class="break-all">curl -fsSL https://raw.githubusercontent.com/ZoeyErinBauer/Shelly-ALPM/master/web-install.sh | sudo bash</code>
+                        <button onclick="copyCommand()" class="text-gray-500 hover:text-white p-2 transition-colors opacity-0 group-hover:opacity-100 flex items-center gap-2">
+                            <i data-lucide="copy" class="w-4 h-4" id="copyIcon"></i>
+                            <span id="copyText" class="text-[10px] hidden">Copied!</span>
                         </button>
                     </div>
                 </div>
@@ -147,6 +148,26 @@
     <script>
         lucide.createIcons();
 
+        async function copyCommand() {
+            const command = document.getElementById('installCommand').innerText;
+            const copyIcon = document.getElementById('copyIcon');
+            const copyText = document.getElementById('copyText');
+            
+            try {
+                await navigator.clipboard.writeText(command);
+                
+                // Visual feedback
+                copyIcon.style.display = 'none';
+                copyText.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    copyIcon.style.display = 'block';
+                    copyText.classList.add('hidden');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+        }
     </script>
 </body>
 </html>
